@@ -1,0 +1,38 @@
+class Logger {
+
+    HashMap<String, Integer> hm;
+    public Logger() {
+        hm = new HashMap<>();
+    }
+    
+    public boolean shouldPrintMessage(int timestamp, String message) {
+        // 1. is message unique
+        // 2. has it been 10 seconds after the same message seen
+        
+        if(hm.containsKey(message))
+        {
+            if(timestamp - hm.get(message) >= 10)
+            {
+                hm.put(message, timestamp);
+                return true;
+            }
+            
+            return false;
+        }
+        else
+        {
+            hm.put(message, timestamp);
+            return true;
+        }
+        
+    
+    }
+}
+
+/**
+ * Your Logger object will be instantiated and called as such:
+ * Logger obj = new Logger();
+ * boolean param_1 = obj.shouldPrintMessage(timestamp,message);
+ */
+
+//https://www.youtube.com/watch?v=g8r59EosQhU&t=514s
